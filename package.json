@@ -1,23 +1,10 @@
 {
   "name": "trobepoker",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "description": "Poker Mobile App",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "front-end": "cd ./front-end && npm run start"
   },
-  "dependencies": {
-    "expo": "~48.0.15",
-    "expo-status-bar": "~1.4.4",
-    "react": "18.2.0",
-    "react-native": "0.71.7"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@types/react": "~18.0.14",
-    "typescript": "^4.9.4"
-  },
-  "private": true
+  "author": "Tahreak Robinson",
+  "license": "ISC"
 }
