@@ -3,8 +3,8 @@ import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 
 // Internal Imports
-import * as Enums from "../types/enums";
-import type * as Interfaces from "../types/interfaces";
+import * as Enums from "../helper/enums";
+import * as Interfaces from "../helper/interfaces";
 
 export const PreviousSessionsTestData: Interfaces.PreviousSession[] = [
   {

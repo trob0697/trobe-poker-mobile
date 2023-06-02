@@ -1,4 +1,4 @@
-import type * as Enums from "./enums";
+import * as Enums from "./enums";
 
 interface ActiveSession {
   location: string;
@@ -21,9 +21,27 @@ interface LiveStatsModal {
   type: Enums.LiveStatsModals;
 }
 
+interface GetGraphDataFunctionReturn {
+  earnings: number;
+  earningsRate: number;
+  graphData: GraphDataPoint[];
+}
+
 interface GraphDataPoint {
   x: Date;
   y: number;
+}
+
+interface InitializeSession {
+  uuid?: string;
+  location?: string;
+  gameType?: Enums.GameTypes;
+  smallBlind?: number;
+  bigBlind?: number;
+  cashIn?: number;
+  cashOut?: number;
+  start?: Date;
+  end?: Date;
 }
 
 interface PreviousSession {
@@ -38,4 +56,4 @@ interface PreviousSession {
   end: Date;
 }
 
-export type { ActiveSession, Filters, GraphDataPoint, LiveStatsModal, PreviousSession };
+export type { ActiveSession, Filters, GetGraphDataFunctionReturn, GraphDataPoint, LiveStatsModal, InitializeSession, PreviousSession };

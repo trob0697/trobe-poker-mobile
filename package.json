@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Poker Mobile App",
   "scripts": {
+    "install-all": "cd ./front-end && npm install",
     "front-end": "cd ./front-end && npm run start"
   },
   "author": "Tahreak Robinson",

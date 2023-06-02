@@ -1,7 +1,10 @@
-import type * as Interfaces from "./interfaces";
+import * as Interfaces from "./interfaces";
 
-interface ActiceSession {
+interface ActiveSession {
   session: Interfaces.ActiveSession;
+  sessionKey: number;
+  sessionDropDownIndex: number;
+  setSessionDropDownIndex: (args1: number) => void;
 }
 
 interface GraphComponent {
@@ -13,11 +16,14 @@ interface LiveStatsModal {
   setModal: (arg1: Interfaces.LiveStatsModal) => void;
   setFilters: (arg1: Interfaces.Filters) => void;
   setActiveSession: (arg1: Interfaces.ActiveSession | null) => void;
-  addPreviousSession: (arg1: Interfaces.PreviousSession) => void;
+  addSession: (arg1: Interfaces.PreviousSession) => void;
 }
 
 interface PreviousSession {
   session: Interfaces.PreviousSession;
+  sessionKey: number;
+  sessionDropDownIndex: number;
+  setSessionDropDownIndex: (args1: number) => void;
 }
 
-export type { ActiceSession, GraphComponent, LiveStatsModal, PreviousSession };
+export type { ActiveSession, GraphComponent, LiveStatsModal, PreviousSession };

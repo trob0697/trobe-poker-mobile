@@ -1,3 +1,8 @@
+enum AddModalTabs {
+  Start = "Start",
+  Add = "Add",
+}
+
 enum AppStates {
   Loading,
   Login,
@@ -27,4 +32,4 @@ enum TimeFrames {
   AllTime = "All Time",
 }
 
-export { AppStates, GameTypes, LiveStatsModals, TimeFrames };
+export { AddModalTabs, AppStates, GameTypes, LiveStatsModals, TimeFrames };

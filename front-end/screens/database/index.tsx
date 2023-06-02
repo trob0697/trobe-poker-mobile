@@ -1,5 +1,6 @@
 // External Imports
-import React, { Dimensions, View, Text } from "react-native";
+import React from "react";
+import { Dimensions, View, Text } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 // Constants
