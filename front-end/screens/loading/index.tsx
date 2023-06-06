@@ -9,7 +9,7 @@ const WIDTH = Dimensions.get("window").width;
 export default function LoadingScreen(): JSX.Element {
   return (
     <View className="flex-1 bg-black items-center justify-center">
-      <Image source={require("../../assets/loading.gif")} style={{ height: HEIGHT / 8, width: WIDTH / 8 }} />
+      <Image source={require("../../assets/loading.gif")} style={{ height: HEIGHT / 8, width: HEIGHT / 8 }} />
     </View>
   );
 };
