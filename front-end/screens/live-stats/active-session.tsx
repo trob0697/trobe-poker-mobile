@@ -23,6 +23,7 @@ export default function ActiveSessionComponent( props: Props.ActiveSession ): JS
     setSession(props.session)
   }, [props.session]);
 
+  // TODO: Timer not working
   useEffect(() => {
     setInterval(() => {
       const tempDuration = new Date().getTime() - session.start.getTime();
