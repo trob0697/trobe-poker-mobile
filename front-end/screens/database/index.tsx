@@ -16,4 +16,4 @@ export default function DatabaseScreen(): JSX.Element {
       <FontAwesome name="hourglass-2" size={HEIGHT * 0.03} color={"white"} />
     </View>
   );
-}
+};

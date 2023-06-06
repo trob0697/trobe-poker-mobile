@@ -1,42 +1,49 @@
+// Internal Imports
 import * as Enums from "./enums";
 import * as Interfaces from "./interfaces";
 
+// Constants
+const DAY_IN_MS = 8.64 * Math.pow(10,7);
+
 // TODO: Time filter not working
 function filterSessions( previousSessions: Interfaces.PreviousSession[], filters: Interfaces.Filters ): Interfaces.PreviousSession[] {
-  const now = new Date();
   let tempPreviousSessions = [...previousSessions];
+  let now = new Date();
   switch (filters.timeFrame) {
     case Enums.TimeFrames.AllTime:
       break;
     case Enums.TimeFrames.OneYear:
-      tempPreviousSessions = tempPreviousSessions.filter((session) => session.start.getDate() < now.setFullYear(now.getFullYear() - 1));
+      tempPreviousSessions = tempPreviousSessions.filter((session) => session.start.getTime() > (now.getTime() - (DAY_IN_MS * 365)));
       break;
     case Enums.TimeFrames.ThreeMonths:
-      tempPreviousSessions = tempPreviousSessions.filter((session) => session.start.getDate() < now.setDate(now.getDate() - 90));
+      tempPreviousSessions = tempPreviousSessions.filter((session) => session.start.getTime() > (now.getTime() - (DAY_IN_MS * 90)));
       break;
     case Enums.TimeFrames.OneMonth:
-      tempPreviousSessions = tempPreviousSessions.filter((session) => session.start.getDate() < now.setDate(now.getDate() - 30));
+      tempPreviousSessions = tempPreviousSessions.filter((session) => session.start.getTime() > (now.getTime() - (DAY_IN_MS * 30)));
       break;
     case Enums.TimeFrames.OneWeek:
-      tempPreviousSessions = tempPreviousSessions.filter((session) => session.start.getDate() < now.setDate(now.getDate() - 7));
+      tempPreviousSessions = tempPreviousSessions.filter((session) => session.start.getTime() > (now.getTime() - (DAY_IN_MS * 7)));
       break;
   }
   return tempPreviousSessions.filter((session) => filters.gameType.length == 0 || filters.gameType.includes(session.gameType));
 }
 
 function getGraphData( sessions: Interfaces.PreviousSession[] ): Interfaces.GetGraphDataFunctionReturn {
-  // TODO: Fix start first data point at 0,0
-  // const tempGraphData: Interfaces.GraphDataPoint[] = [{
-  //   x: new Date(new Date().setDate(sessions[0].start.getDate() - 1)),
-  //   y: 0,
-  // }];
   const tempGraphData: Interfaces.GraphDataPoint[] = []
-  let tempSessions = [...sessions].sort((a, b) => a.start.getDate() - b.start.getDate());
-  let [tempEarnings, earningsInBB, timePlayed] = [0, 0, 0];
-  tempSessions.forEach((session) => {
+  let tempSessions = [...sessions].reverse();
+  let [tempEarnings, earningsInBB, timePlayedMS] = [0, 0, 0];
+  tempSessions.forEach((session, index) => {
+    if(index === 0){
+      const startingPoint = new Date(session.start);
+      startingPoint.setDate(startingPoint.getDate() - 1);
+      tempGraphData.push({
+        x: startingPoint,
+        y: 0,
+      })
+    }
     tempEarnings += session.cashOut - session.cashIn;
     earningsInBB += (session.cashOut - session.cashIn) / session.bigBlind;
-    timePlayed += (session.end.valueOf() - session.start.valueOf()) / 1000 / 60 / 60;
+    timePlayedMS += session.end.getTime() - session.start.getTime()
     tempGraphData.push({
       x: session.start,
       y: tempEarnings,
@@ -44,7 +51,7 @@ function getGraphData( sessions: Interfaces.PreviousSession[] ): Interfaces.GetG
   });
   return {
     earnings: tempEarnings,
-    earningsRate: (Math.round(((earningsInBB / timePlayed) * 100) / 100) | 0),
+    earningsRate: (earningsInBB / timePlayedMS) * 3600000,
     graphData: tempGraphData,
 
   }

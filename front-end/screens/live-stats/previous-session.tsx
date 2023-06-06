@@ -17,7 +17,7 @@ export default function PreviousSessionComponent( props: Props.PreviousSession )
       setSessionDropDownIndex(-1);
     else
       setSessionDropDownIndex(sessionKey);
-  }
+  };
 
   return (
     <View className="my-2">
@@ -55,4 +55,4 @@ export default function PreviousSessionComponent( props: Props.PreviousSession )
       : <></>}
     </View>
   );
-}
+};

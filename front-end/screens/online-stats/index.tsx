@@ -11,9 +11,9 @@ export default function OnlineStatsScreen(): JSX.Element {
   return (
     <View className="flex-1 bg-black justify-center items-center">
       <Text className="text-center text-2xl text-white">
-        Live Statistics Feature Is Currently Under Construction, Come Back Soon!
+        Online Statistics Feature Is Currently Under Construction, Come Back Soon!
       </Text>
       <FontAwesome name="hourglass-2" size={HEIGHT * 0.03} color={"white"} />
     </View>
   );
-}
+};

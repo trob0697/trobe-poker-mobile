@@ -1,5 +1,15 @@
+// Internal Imports
 import * as Enums from "./enums";
 import * as Interfaces from "./interfaces";
+
+const ActiveSession: Interfaces.ActiveSession = {
+  location: "",
+  gameType: Enums.GameTypes.NoLimitHoldem,
+  smallBlind: 0,
+  bigBlind: 0,
+  cashIn: 0,
+  start: new Date(),
+}
 
 const Filters: Interfaces.Filters = {
   timeFrame: Enums.TimeFrames.AllTime, 
@@ -11,4 +21,4 @@ const Modal: Interfaces.LiveStatsModal = {
   type: Enums.LiveStatsModals.None,
 }
 
-export { Filters, Modal };
+export { ActiveSession, Filters, Modal };

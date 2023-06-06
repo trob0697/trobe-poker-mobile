@@ -63,14 +63,14 @@ export default function LiveStatsModal( props: Props.LiveStatsModal ): JSX.Eleme
       </Pressable>
     </Modal>
   );
-}
+};
 
 function FiltersComponent(props: Props.LiveStatsModal): JSX.Element {
   const { setModal, setFilters } = props;
-  const [isTimeFrameOpen, setIsTimeFrameOpen] = useState<boolean>(false);
-  const [timeFrame, setTimeFrame] = useState<Enums.TimeFrames | null>(null);
-  const [isGameTypeOpen, setIsGameTypeOpen] = useState<boolean>(false);
-  const [gameType, setGameType] = useState<Enums.GameTypes[]>([]);
+  const [ isTimeFrameOpen, setIsTimeFrameOpen ] = useState<boolean>(false);
+  const [ timeFrame, setTimeFrame ] = useState<Enums.TimeFrames | null>(null);
+  const [ isGameTypeOpen, setIsGameTypeOpen ] = useState<boolean>(false);
+  const [ gameType, setGameType ] = useState<Enums.GameTypes[]>([]);
 
   function onSubmit(): void {
     if(timeFrame)
@@ -122,16 +122,16 @@ function FiltersComponent(props: Props.LiveStatsModal): JSX.Element {
       </TouchableOpacity>
     </Pressable>
   );
-}
+};
 
 function AddComponent(props: Props.LiveStatsModal): JSX.Element {
   const { setModal, setActiveSession, addSession } = props;
-  const [tab, setTab] = useState<Enums.AddModalTabs>(Enums.AddModalTabs.Start);
-  const [isGameTypeOpen, setIsGameTypeOpen] = useState<boolean>(false);
-  const [isDateTimeOpen, setIsDateTimeOpen] = useState<[boolean, boolean]>([ false, false, ]);
-  const [isStartButtonEnabled, setIsStartButtonEnabled] = useState<boolean>(false);
-  const [session, setSession] = useState<Interfaces.InitializeSession>({});
-  const [gameType, setGameType] = useState<Enums.GameTypes | null>(null);
+  const [ tab, setTab ] = useState<Enums.AddModalTabs>(Enums.AddModalTabs.Start);
+  const [ isGameTypeOpen, setIsGameTypeOpen ] = useState<boolean>(false);
+  const [ isDateTimeOpen, setIsDateTimeOpen ] = useState<[boolean, boolean]>([ false, false, ]);
+  const [ isStartButtonEnabled, setIsStartButtonEnabled ] = useState<boolean>(false);
+  const [ session, setSession ] = useState<Interfaces.InitializeSession>({});
+  const [ gameType, setGameType ] = useState<Enums.GameTypes | null>(null);
 
   useEffect(() => {
     if(gameType)
@@ -155,14 +155,18 @@ function AddComponent(props: Props.LiveStatsModal): JSX.Element {
 
   function onSubmit(): void {
     if(tab === Enums.AddModalTabs.Start){
-      const tempSession = {...session};
-      tempSession.start = new Date();
-      setActiveSession(tempSession as Interfaces.ActiveSession);
+      const tempSession = {
+        ...session,
+        start: new Date(),
+      } as Interfaces.ActiveSession;
+      setActiveSession(tempSession);
     }
     else if (tab === Enums.AddModalTabs.Add){
-      const tempSession = {...session};
-      tempSession.uuid = uuidv4();
-      addSession(tempSession as Interfaces.PreviousSession);
+      const tempSession = {
+        ...session,
+        uuid: uuidv4(),
+      } as Interfaces.PreviousSession;
+      addSession(tempSession);
     }
     setModal({ visible: false, type: Enums.LiveStatsModals.None });
   }
@@ -298,7 +302,7 @@ function AddComponent(props: Props.LiveStatsModal): JSX.Element {
       </TouchableOpacity>
     </Pressable>
   );
-}
+};
 
 function ModifyComponent(): JSX.Element {
   return (
@@ -306,4 +310,4 @@ function ModifyComponent(): JSX.Element {
       <Text>Modify</Text>
     </View>
   );
-}
+};

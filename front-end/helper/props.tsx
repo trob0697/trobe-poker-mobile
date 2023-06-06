@@ -1,7 +1,10 @@
+// Internal Imports
 import * as Interfaces from "./interfaces";
 
 interface ActiveSession {
   session: Interfaces.ActiveSession;
+  addSession: (arg1: Interfaces.PreviousSession) => void;
+  clearSession: () => void;
   sessionKey: number;
   sessionDropDownIndex: number;
   setSessionDropDownIndex: (args1: number) => void;

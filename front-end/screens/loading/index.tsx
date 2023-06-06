@@ -12,4 +12,4 @@ export default function LoadingScreen(): JSX.Element {
       <Image source={require("../../assets/loading.gif")} style={{ height: HEIGHT / 8, width: WIDTH / 8 }} />
     </View>
   );
-}
+};

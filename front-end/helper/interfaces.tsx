@@ -1,3 +1,4 @@
+// Internal Imports
 import * as Enums from "./enums";
 
 interface ActiveSession {

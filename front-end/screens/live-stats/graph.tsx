@@ -13,9 +13,9 @@ const HEIGHT = Dimensions.get("window").height;
 const WIDTH = Dimensions.get("window").width;
 
 export default function GraphComponent( props: Props.GraphComponent ): JSX.Element {
-  const [earnings, setEarnings] = useState<number>(0);
-  const [earningsRate, setEarningsRate] = useState<number>(0);
-  const [graphData, setGraphData] = useState<Interfaces.GraphDataPoint[]>([]);
+  const [ earnings, setEarnings ] = useState<number>(0);
+  const [ earningsRate, setEarningsRate ] = useState<number>(0);
+  const [ graphData, setGraphData ] = useState<Interfaces.GraphDataPoint[]>([]);
 
   useEffect(() => {
     const graphData = Functions.getGraphData(props.sessions);
@@ -24,10 +24,10 @@ export default function GraphComponent( props: Props.GraphComponent ): JSX.Eleme
     setGraphData(graphData.graphData);
   }, [props]);
 
-  function yAxisFormater( num: number ): string {
+  function yAxisFormatter( num: number ): string {
     const res = Math.abs(num) > 999 ? (Math.sign(num) * (Math.abs(num) / 1000)).toFixed(1) + "k" : (Math.sign(num) * Math.abs(num)).toString();
     return Math.sign(num) >= 0 ? "$" + res : "-$" + res;
-  }
+  };
 
   return (
     <View className="items-center">
@@ -37,19 +37,16 @@ export default function GraphComponent( props: Props.GraphComponent ): JSX.Eleme
             {"+$" + earnings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </Text>
           <Text className="text-xs text-white">
-            {earningsRate.toString() + " BB/HR"}
+            {(earningsRate ? Math.round(earningsRate).toString() : "0") + " BB/HR"}
           </Text>
         </>
       :
         <>
           <Text className="text-2xl text-red-500">
-            {"-$" +
-              Math.abs(earnings)
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            {"-$" + Math.abs(earnings).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </Text>
           <Text className="text-xs text-white">
-            {"-" + Math.abs(earningsRate).toString() + " BB/HR"}
+            {"-" + Math.abs(Math.round(earningsRate)).toString() + " BB/HR"}
           </Text>
         </>
       }
@@ -79,9 +76,9 @@ export default function GraphComponent( props: Props.GraphComponent ): JSX.Eleme
         }}
       >
         <VictoryAxis tickCount={4} />
-        <VictoryAxis dependentAxis tickFormat={(num: number) => yAxisFormater(num)} />
+        <VictoryAxis dependentAxis tickFormat={(num: number) => yAxisFormatter(num)} />
         <VictoryLine data={graphData} style={{ data: { stroke: "white" } }} />
       </VictoryChart>
     </View>
   );
-}
+};

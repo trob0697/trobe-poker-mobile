@@ -21,12 +21,12 @@ const HEIGHT = Dimensions.get("window").height;
 const WIDTH = Dimensions.get("window").width;
 
 export default function LiveStatsScreen(): JSX.Element {
-  const [activeSession, setActiveSession] = useState<Interfaces.ActiveSession | null>(null);
-  const [previousSessions, setPreviousSessions] = useState<Interfaces.PreviousSession[]>([]);
-  const [sessionDropDownIndex, setSessionDropDownIndex] = useState<number>(-1);
-  const [filteredPreviousSessions, setFilteredPreviousSessions] = useState<Interfaces.PreviousSession[]>([]);
-  const [filters, setFilters] = useState<Interfaces.Filters>(Defaults.Filters);
-  const [modal, setModal] = useState<Interfaces.LiveStatsModal>(Defaults.Modal);
+  const [ activeSession, setActiveSession ] = useState<Interfaces.ActiveSession | null>(null);
+  const [ previousSessions, setPreviousSessions ] = useState<Interfaces.PreviousSession[]>([]);
+  const [ sessionDropDownIndex, setSessionDropDownIndex ] = useState<number>(-1);
+  const [ filteredPreviousSessions, setFilteredPreviousSessions ] = useState<Interfaces.PreviousSession[]>([]);
+  const [ filters, setFilters ] = useState<Interfaces.Filters>(Defaults.Filters);
+  const [ modal, setModal ] = useState<Interfaces.LiveStatsModal>(Defaults.Modal);
 
   useEffect(() => {
     const data = PreviousSessionsTestData;
@@ -38,10 +38,13 @@ export default function LiveStatsScreen(): JSX.Element {
     setFilteredPreviousSessions(tempPreviousSessions);
   }, [previousSessions, filters]);
 
-  const addSession = useCallback((session: Interfaces.PreviousSession) => {
-    setPreviousSessions((prev) => [...prev, session]);
-  }, [previousSessions]);
-
+  function addSession(session: Interfaces.PreviousSession): void {
+    const tempPreviousSessions = [...previousSessions];
+    tempPreviousSessions.push(session);
+    tempPreviousSessions.sort((a, b) => b.start.getTime() - a.start.getTime());
+    setPreviousSessions(tempPreviousSessions);
+  };
+  
   return (
     <View className="flex-1 bg-black">
       <View className="flex-row justify-between mx-5">
@@ -69,12 +72,14 @@ export default function LiveStatsScreen(): JSX.Element {
           {activeSession != null ?
             <ActiveSessionComponent
               session={activeSession}
+              addSession={addSession}
+              clearSession={() => setActiveSession(null)}
               sessionKey={0}
               sessionDropDownIndex={sessionDropDownIndex}
               setSessionDropDownIndex={setSessionDropDownIndex}
             />
           : <></> }
-          {filteredPreviousSessions.sort((a, b) => b.start.getDate() - a.start.getDate()).map((session, index) => { return (
+          {filteredPreviousSessions.map((session, index) => { return (
             <PreviousSessionComponent 
               key={index} 
               session={session} 
@@ -94,4 +99,4 @@ export default function LiveStatsScreen(): JSX.Element {
       />
     </View>
   );
-}
+};

@@ -12,4 +12,4 @@ export default function LoginScreen(): JSX.Element {
       <Text className="text-center text-2xl text-white">Login</Text>
     </View>
   );
-}
+};
