@@ -5,7 +5,6 @@ import * as Interfaces from "./interfaces";
 // Constants
 const DAY_IN_MS = 8.64 * Math.pow(10,7);
 
-// TODO: Time filter not working
 function filterSessions( previousSessions: Interfaces.PreviousSession[], filters: Interfaces.Filters ): Interfaces.PreviousSession[] {
   let tempPreviousSessions = [...previousSessions];
   let now = new Date();
