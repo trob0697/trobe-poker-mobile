@@ -140,13 +140,13 @@ function AddComponent(props: Props.LiveStatsModal): JSX.Element {
 
   useEffect(() => {
     if(tab === Enums.AddModalTabs.Start){
-      if(session.location && session.gameType && session.smallBlind && session.bigBlind && session.cashIn)
+      if(session.location !== undefined && session.gameType !== undefined && session.smallBlind !== undefined && session.bigBlind !== undefined && session.cashIn !== undefined)
         setIsStartButtonEnabled(true);
       else
         setIsStartButtonEnabled(false);
     }
     else if(tab === Enums.AddModalTabs.Add){
-      if(session.location && session.gameType && session.start && session.end && session.smallBlind && session.bigBlind && session.cashIn && session.cashOut)
+      if(session.location !== undefined && session.gameType !== undefined && session.start !== undefined && session.end !== undefined && session.smallBlind !== undefined && session.bigBlind !== undefined && session.cashIn !== undefined && session.cashOut !== undefined)
         setIsStartButtonEnabled(true);
       else
         setIsStartButtonEnabled(false);
