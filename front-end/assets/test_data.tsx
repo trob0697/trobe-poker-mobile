@@ -7,28 +7,7 @@ import * as Enums from "../helper/enums";
 import * as Interfaces from "../helper/interfaces";
 
 export const PreviousSessionsTestData: Interfaces.PreviousSession[] = [
-  {
-    uuid: uuidv4(),
-    location: "Tampa Hard Rock Casino",
-    gameType: Enums.GameTypes.NoLimitHoldem,
-    smallBlind: 1,
-    bigBlind: 2,
-    cashIn: 200,
-    cashOut: 210,
-    start: new Date(2023, 5, 5, 10, 0, 0, 0),
-    end: new Date(2023, 5, 5, 18, 0, 0, 0),
-  },
-  {
-    uuid: uuidv4(),
-    location: "Tampa Hard Rock Casino",
-    gameType: Enums.GameTypes.NoLimitHoldem,
-    smallBlind: 1,
-    bigBlind: 2,
-    cashIn: 300,
-    cashOut: 0,
-    start: new Date(2023, 4, 10, 10, 0, 0, 0),
-    end: new Date(2023, 4, 10, 18, 0, 0, 0),
-  },
+
   {
     uuid: uuidv4(),
     location: "Tampa Hard Rock Casino",
@@ -81,7 +60,7 @@ export const PreviousSessionsTestData: Interfaces.PreviousSession[] = [
     bigBlind: 2,
     cashIn: 200,
     cashOut: 400,
-    start: new Date(2023, 0, 1, 10, 0, 0, 0),
-    end: new Date(2023, 0, 1, 18, 0, 0, 0),
+    start: new Date(2023, 3, 1, 10, 0, 0, 0),
+    end: new Date(2023, 3, 1, 18, 0, 0, 0),
   },
 ];
