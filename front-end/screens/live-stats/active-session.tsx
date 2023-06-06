@@ -1,7 +1,6 @@
 // External Imports
 import React, { useEffect, useState } from "react";
 import { Dimensions, View, TouchableOpacity, Text } from "react-native";
-// import { Transition, Transitioning } from "react-native-reanimated";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 // Internal Imports
@@ -10,14 +9,6 @@ import * as Props from "../../helper/props";
 // Constants
 const HEIGHT = Dimensions.get("window").height;
 const WIDTH = Dimensions.get("window").width;
-// const ref = React.useRef();
-// const transition= (
-//   <Transition.Together>
-//     <Transition.In type="fade"  durationMs={200}/>
-//     <Transition.Change />
-//     <Transition.Out type="fade"  durationMs={200}/>
-//   </Transition.Together>
-// )
 
 export default function ActiveSessionComponent( props: Props.ActiveSession ): JSX.Element {
   const { session, sessionKey, sessionDropDownIndex, setSessionDropDownIndex } = props;
